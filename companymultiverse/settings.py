@@ -93,36 +93,36 @@ WSGI_APPLICATION = 'companymultiverse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-
-    'default': {
-
-        'ENGINE':
-        'django.db.backends.postgresql',
-
-        'NAME':
-        config('POSTGRES_DB'),
-
-        'USER':
-        config('POSTGRES_USER'),
-
-        'PASSWORD':
-        config('POSTGRES_PASSWORD'),
-
-        'HOST':
-        config('POSTGRES_HOST'),
-
-        'PORT':
-        config('POSTGRES_PORT'),
-    }
-}
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         default=config('DATABASE_URL'),
-#         conn_max_age=600,
-#         ssl_require=True
-#     )
+
+#     'default': {
+
+#         'ENGINE':
+#         'django.db.backends.postgresql',
+
+#         'NAME':
+#         config('POSTGRES_DB'),
+
+#         'USER':
+#         config('POSTGRES_USER'),
+
+#         'PASSWORD':
+#         config('POSTGRES_PASSWORD'),
+
+#         'HOST':
+#         config('POSTGRES_HOST'),
+
+#         'PORT':
+#         config('POSTGRES_PORT'),
+#     }
 # }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
