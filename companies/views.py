@@ -8,7 +8,7 @@ from accounts.models import User
 from .permissions import IsAdmin
 from auditlogs.models import AuditLog
 from companymultiverse.permissions import IsAdminOrManager
-
+from .models import Company
 from notifications.models import Notification
 # Create your views here.
 
@@ -235,3 +235,21 @@ class RemoveEmployeeView(APIView):
         },
                         status = status.HTTP_200_OK
                         )
+        
+        
+class CompanyListView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+
+        companies = Company.objects.filter(
+            is_active=True
+        )
+
+        serializer = CompanySerializer(
+            companies,
+            many=True
+        )
+
+        return Response(serializer.data)

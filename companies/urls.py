@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CreateCompanyView, AddEmployeeView, CompanyEmployeesView, EmployeeDetailView, UpdateEmployeeRoleView, RemoveEmployeeView
+from .views import CreateCompanyView, AddEmployeeView, CompanyEmployeesView, EmployeeDetailView, UpdateEmployeeRoleView, RemoveEmployeeView, CompanyListView
 
 urlpatterns=[
     path('create/',CreateCompanyView.as_view(), name="create_company_view"),
@@ -24,4 +24,9 @@ urlpatterns=[
         RemoveEmployeeView.as_view(),
         name="remove_employee_view"
     ),
+    path(
+    "",
+    CompanyListView.as_view(),
+    name="company_list_view"
+),
 ]
