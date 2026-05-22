@@ -1,9 +1,23 @@
 from pathlib import Path
 from decouple import config
-import dj_database_url
+# import dj_database_url
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SIMPLE_JWT = {
 
+    "ACCESS_TOKEN_LIFETIME":
+        timedelta(days=7),
+
+    "REFRESH_TOKEN_LIFETIME":
+        timedelta(days=30),
+
+    "ROTATE_REFRESH_TOKENS":
+        False,
+
+    "BLACKLIST_AFTER_ROTATION":
+        False,
+}
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -93,36 +107,36 @@ WSGI_APPLICATION = 'companymultiverse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-
-#     'default': {
-
-#         'ENGINE':
-#         'django.db.backends.postgresql',
-
-#         'NAME':
-#         config('POSTGRES_DB'),
-
-#         'USER':
-#         config('POSTGRES_USER'),
-
-#         'PASSWORD':
-#         config('POSTGRES_PASSWORD'),
-
-#         'HOST':
-#         config('POSTGRES_HOST'),
-
-#         'PORT':
-#         config('POSTGRES_PORT'),
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+
+    'default': {
+
+        'ENGINE':
+        'django.db.backends.postgresql',
+
+        'NAME':
+        config('POSTGRES_DB'),
+
+        'USER':
+        config('POSTGRES_USER'),
+
+        'PASSWORD':
+        config('POSTGRES_PASSWORD'),
+
+        'HOST':
+        config('POSTGRES_HOST'),
+
+        'PORT':
+        config('POSTGRES_PORT'),
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL'),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
